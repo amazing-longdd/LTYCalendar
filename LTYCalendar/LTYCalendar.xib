@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LTYCalendar">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bf-oI-h3t" userLabel="bgView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMi-cf-brW" userLabel="TopView">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX。XXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPS-3g-UMz" userLabel="当前的年月份">
+                                    <rect key="frame" x="258" y="11" width="84" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPW-v8-97J" userLabel="左">
+                                    <rect key="frame" x="10" y="7" width="30" height="30"/>
+                                    <state key="normal" title="左"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brj-nL-Gye" userLabel="右">
+                                    <rect key="frame" x="560" y="7" width="30" height="30"/>
+                                    <state key="normal" title="右"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.74117647060000003" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="CRC-qR-4HU"/>
+                                <constraint firstAttribute="height" constant="44" id="DY1-bl-F7S"/>
+                                <constraint firstItem="xPW-v8-97J" firstAttribute="leading" secondItem="SMi-cf-brW" secondAttribute="leading" constant="10" id="M1P-k9-QvW"/>
+                                <constraint firstItem="VPS-3g-UMz" firstAttribute="centerX" secondItem="SMi-cf-brW" secondAttribute="centerX" id="Use-kW-c48"/>
+                                <constraint firstAttribute="trailing" secondItem="Brj-nL-Gye" secondAttribute="trailing" constant="10" id="WNn-SV-tyx"/>
+                                <constraint firstItem="xPW-v8-97J" firstAttribute="centerY" secondItem="SMi-cf-brW" secondAttribute="centerY" id="XZO-Sw-yZT"/>
+                                <constraint firstItem="Brj-nL-Gye" firstAttribute="centerY" secondItem="SMi-cf-brW" secondAttribute="centerY" id="azr-BM-B7a"/>
+                                <constraint firstItem="VPS-3g-UMz" firstAttribute="centerY" secondItem="SMi-cf-brW" secondAttribute="centerY" id="iEc-QW-lC4"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="CRC-qR-4HU"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="p3C-ur-va6">
+                            <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EQa-HW-e70">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <connections>
+                                <outlet property="dataSource" destination="iN0-l3-epB" id="Unr-W4-3km"/>
+                                <outlet property="delegate" destination="iN0-l3-epB" id="dvD-7H-wTK"/>
+                            </connections>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="SMi-cf-brW" firstAttribute="leading" secondItem="6bf-oI-h3t" secondAttribute="leading" id="59G-hz-fbg"/>
+                        <constraint firstAttribute="trailing" secondItem="p3C-ur-va6" secondAttribute="trailing" id="EX3-D2-Z7x"/>
+                        <constraint firstItem="p3C-ur-va6" firstAttribute="top" secondItem="SMi-cf-brW" secondAttribute="bottom" id="UIf-PG-SbR"/>
+                        <constraint firstAttribute="bottom" secondItem="p3C-ur-va6" secondAttribute="bottom" id="e4X-TL-tMc"/>
+                        <constraint firstItem="p3C-ur-va6" firstAttribute="leading" secondItem="6bf-oI-h3t" secondAttribute="leading" id="gOP-dK-AVr"/>
+                        <constraint firstAttribute="trailing" secondItem="SMi-cf-brW" secondAttribute="trailing" id="nlj-z8-JVN"/>
+                        <constraint firstItem="SMi-cf-brW" firstAttribute="top" secondItem="6bf-oI-h3t" secondAttribute="top" id="q4L-24-C7g"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6bf-oI-h3t" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9Kp-pO-Hua"/>
+                <constraint firstAttribute="trailing" secondItem="6bf-oI-h3t" secondAttribute="trailing" id="Cp4-Ak-1bq"/>
+                <constraint firstItem="6bf-oI-h3t" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FC7-UD-L2n"/>
+                <constraint firstAttribute="bottom" secondItem="6bf-oI-h3t" secondAttribute="bottom" id="KPO-gd-IBS"/>
+            </constraints>
+            <connections>
+                <outlet property="collectionView" destination="p3C-ur-va6" id="gQ7-oA-JBX"/>
+                <outlet property="leftButton" destination="xPW-v8-97J" id="f3o-P5-z7W"/>
+                <outlet property="monthLabel" destination="VPS-3g-UMz" id="VPe-UW-8Gb"/>
+                <outlet property="rightButton" destination="Brj-nL-Gye" id="YzR-1q-thF"/>
+            </connections>
+            <point key="canvasLocation" x="272" y="424"/>
+        </view>
+    </objects>
+</document>
