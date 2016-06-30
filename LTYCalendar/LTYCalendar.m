@@ -41,6 +41,7 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     
+    self.collectionView.backgroundColor = [UIColor blackColor];
     [self.collectionView setCollectionViewLayout:layout animated:YES];
     
 }
@@ -66,8 +67,7 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
     [self addGestureRecognizer:tap];
     
-    
-    [self showSelf];
+    [self show];
 }
 
 #pragma mark - 关于date的处理函数
@@ -179,10 +179,10 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
             [cell.dayLabel setText:[NSString stringWithFormat:@"%li",(long)day]];
             [cell.dayLabel setTextColor:[self getColor:@"6f6f6f"]];
             
-            //this month
             if ([_today isEqualToDate:_date]) {
                 if (day == [self day:_date]) {
                     [cell.dayLabel setTextColor:[self getColor:@"4898eb"]];
+                    [cell setLabelBackgroundColor:[UIColor yellowColor]];
                 } else if (day > [self day:_date]) {
                     [cell.dayLabel setTextColor:[self getColor:@"cbcbcb"]];
                 }
@@ -225,7 +225,7 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
     
 }
 
-- (void)showSelf
+- (void)show
 {
     self.transform = CGAffineTransformTranslate(self.transform, 0, - self.frame.size.height);
     [UIView animateWithDuration:0.5 animations:^(void) {
@@ -234,7 +234,7 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
         [self initCollectionView];
     }];
 }
-- (void)hideSelf
+- (void)hide
 {
     [UIView animateWithDuration:0.5 animations:^(void) {
         self.transform = CGAffineTransformTranslate(self.transform, 0, - self.frame.size.height);

@@ -63,7 +63,7 @@
                             </connections>
                         </collectionView>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="SMi-cf-brW" firstAttribute="leading" secondItem="6bf-oI-h3t" secondAttribute="leading" id="59G-hz-fbg"/>
                         <constraint firstAttribute="trailing" secondItem="p3C-ur-va6" secondAttribute="trailing" id="EX3-D2-Z7x"/>
