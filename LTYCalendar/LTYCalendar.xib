@@ -20,16 +20,22 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXX。XXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPS-3g-UMz" userLabel="当前的年月份">
                                     <rect key="frame" x="258" y="11" width="84" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPW-v8-97J" userLabel="左">
                                     <rect key="frame" x="10" y="7" width="30" height="30"/>
                                     <state key="normal" title="左"/>
+                                    <connections>
+                                        <action selector="leftButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="dW8-Rp-gRP"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brj-nL-Gye" userLabel="右">
                                     <rect key="frame" x="560" y="7" width="30" height="30"/>
                                     <state key="normal" title="右"/>
+                                    <connections>
+                                        <action selector="rightButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="9qd-ao-AVB"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.96078431369999995" green="0.74117647060000003" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>

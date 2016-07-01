@@ -48,8 +48,9 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
 
 - (void)setDate:(NSDate *)date
 {
+    //给date赋值的时候 切换数据源的时候调用的方法。
     _date = date;
-    [_monthLabel setText:[NSString stringWithFormat:@"%.2ld-%li",(long)[self month:date],(long)[self year:date]]];
+    [_monthLabel setText:[NSString stringWithFormat:@"%ld年%ld月",(long)[self year:date],(long)[self month:date]]];
     [_collectionView reloadData];
 }
 - (void)awakeFromNib
@@ -57,16 +58,14 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
     self.weekArray = @[@"日",@"一",@"二",@"三",@"四",@"五",@"六"];
     [self.collectionView registerClass:[LTYCalendarCell class] forCellWithReuseIdentifier:LTYCalendarCellIdentifier];
     
-    UISwipeGestureRecognizer *swipLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(nexAction:)];
+    UISwipeGestureRecognizer *swipLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightButtonAction:)];
     swipLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self addGestureRecognizer:swipLeft];
     
-    UISwipeGestureRecognizer *swipRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(previouseAction:)];
+    UISwipeGestureRecognizer *swipRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftButtonAction:)];
     swipRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self addGestureRecognizer:swipRight];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
-    [self addGestureRecognizer:tap];
-    
+
     [self show];
 }
 
@@ -185,6 +184,7 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
                     [cell setLabelBackgroundColor:[UIColor yellowColor]];
                 } else if (day > [self day:_date]) {
                     [cell.dayLabel setTextColor:[self getColor:@"cbcbcb"]];
+                    [cell setLabelBackgroundColor:[UIColor clearColor]];
                 }
             } else if ([_today compare:_date] == NSOrderedAscending) {
                 [cell.dayLabel setTextColor:[self getColor:@"cbcbcb"]];
@@ -206,7 +206,7 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
         if (i >= firstWeekday && i <= firstWeekday + daysInMonth - 1) {
             day = i - firstWeekday + 1;
             
-            //this month
+            //当月
             if ([_today isEqualToDate:_date]) {
                 if (day <= [self day:_date]) {
                     return YES;
@@ -234,16 +234,16 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
         [self initCollectionView];
     }];
 }
-- (void)hide
-{
-    [UIView animateWithDuration:0.5 animations:^(void) {
-        self.transform = CGAffineTransformTranslate(self.transform, 0, - self.frame.size.height);
-
-    } completion:^(BOOL isFinished) {
-
-        [self removeFromSuperview];
-    }];
-}
+//- (void)hide
+//{
+//    [UIView animateWithDuration:0.5 animations:^(void) {
+//        self.transform = CGAffineTransformTranslate(self.transform, 0, - self.frame.size.height);
+//
+//    } completion:^(BOOL isFinished) {
+//
+//        [self removeFromSuperview];
+//    }];
+//}
 #pragma mark -16进制颜色工具函数
 - (UIColor *)getColor:(NSString*)hexColor
 {
@@ -261,6 +261,21 @@ NSString *const LTYCalendarCellIdentifier = @"LTYCalendarCell";
     [[NSScanner scannerWithString:[hexColor substringWithRange:range]]scanHexInt:&blue];
     
     return [UIColor colorWithRed:(float)(red/255.0f)green:(float)(green / 255.0f) blue:(float)(blue / 255.0f)alpha:1.0f];
+}
+
+- (IBAction)leftButtonAction:(id)sender {
+    
+    [UIView transitionWithView:self duration:0.5 options:UIViewAnimationOptionTransitionCurlDown animations:^(void) {
+        self.date = [self lastMonth:self.date];
+    } completion:nil];
+    
+}
+- (IBAction)rightButtonAction:(id)sender {
+    
+    [UIView transitionWithView:self duration:0.5 options:UIViewAnimationOptionTransitionCurlUp animations:^(void) {
+        self.date = [self nextMonth:self.date];
+    } completion:nil];
+    
 }
 
 
